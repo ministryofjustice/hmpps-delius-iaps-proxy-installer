@@ -1,0 +1,55 @@
+---
+
+- name: create our lets encrypt directories
+  file:
+    path: "/etc/letsencrypt/{{ item }}"
+    state: directory
+    group: root
+    mode: "0655"
+    owner: root
+    recurse: yes
+  with_items:
+    - 'accounts'
+    - 'csr'
+    - 'keys'
+    - 'renewal'
+    - 'renewal-hooks/deploy'
+    - 'renewal-hooks/post'
+    - 'renewal-hooks/pre'
+    - 'live/{{ url }}'
+    - 'archive/{{ url }}'
+
+- name: Create letsecrypt renewal config file
+  template:
+    src: "{{ role_path }}/templates/letsencrypt.conf.j2"
+    dest: "/etc/letsencrypt/renewal/{{ url }}.conf"
+    owner: "root"
+    mode: "0644"
+    group: "root"
+
+- name: create our lets encrypt script directory
+  file:
+    path: "/opt/hmpps/{{ item }}"
+    state: directory
+    group: root
+    mode: "0755"
+    owner: ec2-user
+    recurse: yes
+  with_items:
+    - 'scripts'
+
+- name: Create letsecrypt renewal script
+  template:
+    src: "{{ role_path }}/templates/letsencrypt-renew.sh.j2"
+    dest: "/opt/hmpps/scripts/letsencrypt-renew.sh"
+    owner: "root"
+    mode: "0755"
+    group: "root"
+
+- name: Create a cron job to auto-renew/check the SSL cert every 12 hours
+  template:
+    src: "{{ role_path }}/templates/letsencryt-renew-cron.j2"
+    dest: "/etc/cron.d/letsencrypt-renew"
+    owner: "root"
+    mode: "0644"
+    group: "root"

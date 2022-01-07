@@ -1,0 +1,9 @@
+---
+
+- name: Restart crond.service
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - 'crond.service'
+    - 'nginx'

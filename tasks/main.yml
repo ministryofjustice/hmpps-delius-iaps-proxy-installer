@@ -1,0 +1,10 @@
+---
+
+- name: Setup Nginx
+  include: nginx-setup.yml
+
+- name: Setup LetsEncrypt
+  include: letsencrypt.yml
+
+- name: Restart Services
+  include: restart-services.yml
