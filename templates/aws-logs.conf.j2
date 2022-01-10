@@ -1,0 +1,117 @@
+[general]
+state_file = /var/awslogs/state/agent-state
+
+[nginx_access_log]
+file = /var/log/nginx/*access.log
+file_fingerprint_lines = 1
+#                 19/Aug/2020:16:39:13 +0000
+datetime_format = %d/%b/%Y:%H:%M:%S %z
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/nginx_access_log
+
+###Prod
+[nginx_data_im_proxy_int_log]
+file = /var/log/nginx/data-im-proxy.probation.service.justice.gov.uk.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/data_im_proxy_log
+
+###Stage
+[nginx_data_im_proxy_int_stage_log]
+file = /var/log/nginx/data-im-proxy-int-psn.stage.probation.service.justice.gov.uk.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/data_im_proxy_int_log
+
+[nginx_data_im_proxy_ext_stage_log]
+file = /var/log/nginx/data-im-proxy-ext-psn.stage.probation.service.justice.gov.uk.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/data_im_proxy_ext_log
+
+###dev
+[nginx_data_im_proxy_int_dev_log]
+file = /var/log/nginx/data-im-proxy-int-psn.dev.probation.service.justice.gov.uk.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/data_im_proxy_int_log
+
+[nginx_data_im_proxy_ext_dev_log]
+file = /var/log/nginx/data-im-proxy-ext-psn.dev.probation.service.justice.gov.uk.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/data_im_proxy_ext_log
+
+[nginx_error_log]
+file = /var/log/nginx/error.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/nginx_error_log
+
+[letsencrypt_log]
+file = /var/log/letsencrypt/letsencrypt.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/letsencrypt_log
+
+[crond_log]
+file = /var/log/cron
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/cron
+
+[secure_log]
+file = /var/log/secure
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/secure
+
+[mail_log]
+file = /var/log/mail
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/mail
+
+[messages_log]
+file = /var/log/messages
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/messages
+
+[ssmagent_log]
+file = /var/log/amazon/ssm/amazon-ssm-agent.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/amazon-ssm-agent_log
+
+[userdata_log]
+file = /tmp/startup.log
+file_fingerprint_lines = 1
+#                 2020/08/19 16:39:13
+datetime_format = %Y/%m/%d %H:%M:%S
+log_group_name = delius/iaps-proxy-application
+log_stream_name = {hostname}/startup

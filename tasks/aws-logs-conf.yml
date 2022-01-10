@@ -1,0 +1,17 @@
+---
+
+- name: Create aws logs config file
+  template:
+    src: "{{ role_path }}/templates/aws-logs.conf.j2"
+    dest: "/etc/awslogs/awslogs.conf"
+    owner: "root"
+    mode: "0644"
+    group: "root"
+
+- name: Restart awslogsd service
+  service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+  with_items:
+    - 'awslogsd'

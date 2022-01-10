@@ -1,5 +1,8 @@
 ---
 
+- name: Setup awslogs
+  include: aws-logs-conf.yml
+
 - name: Setup Nginx
   include: nginx-setup.yml
 

@@ -9,7 +9,12 @@ server {
 	resolver		51.231.83.98 valid=30s;
 
         location / {
-          proxy_pass                      https://{{ {{ stage_northgate_url }} }}:8443;
+{% if env_type == "stage" %}
+          proxy_pass                      https://{{ stage_northgate_url }}:8443;
+{% endif %}
+{% if env_type == "dev" %}
+          proxy_pass                      https://{{ dev_northgate_url }}:8443;
+{% endif %}
           proxy_ssl_trusted_certificate	  /etc/pki/tls/certs/ca-bundle.crt;
           proxy_ssl_verify_depth	  2;
           proxy_ssl_verify 		  on;
@@ -31,7 +36,12 @@ server {
         resolver                51.231.83.98 valid=30s;
 
         location / {
-                proxy_pass                      https://{{ {{ stage_northgate_url }} }}:8443;
+{% if env_type == "stage" %}
+                proxy_pass                      https://{{ stage_northgate_url }}:8443;
+{% endif %}
+{% if env_type == "dev" %}
+                proxy_pass                      https://{{ dev_northgate_url }}:8443;
+{% endif %}
                 proxy_ssl_trusted_certificate   /etc/pki/tls/certs/ca-bundle.crt;
                 proxy_ssl_verify_depth          2;
                 proxy_ssl_verify                on;

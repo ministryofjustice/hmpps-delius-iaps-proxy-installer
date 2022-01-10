@@ -11,7 +11,7 @@
 
 - name: Create Stage nginx conf
   template:
-    src: "{{ role_path }}/templates/stage-nginx.conf.j2"
+    src: "{{ role_path }}/templates/nonprod-nginx.conf.j2"
     dest: "/etc/nginx/conf.d/im-proxy.conf"
     owner: "root"
     mode: "0644"
@@ -20,7 +20,7 @@
 
 - name: Create Dev nginx conf
   template:
-    src: "{{ role_path }}/templates/dev-nginx.conf.j2"
+    src: "{{ role_path }}/templates/nonprod-nginx.conf.j2"
     dest: "/etc/nginx/conf.d/im-proxy.conf"
     owner: "root"
     mode: "0644"

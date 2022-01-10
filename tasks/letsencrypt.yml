@@ -53,3 +53,8 @@
     owner: "root"
     mode: "0644"
     group: "root"
+
+#- name: Generate letsencrypt certs
+#  shell: "/opt/hmpps/scripts/letsencrypt-renew.sh > /var/log/letsencryt-bootstrap.log"
+#  args:
+#    creates: /var/log/letsencryt-bootstrap.log
