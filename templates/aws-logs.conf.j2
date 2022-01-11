@@ -109,9 +109,9 @@ log_group_name = delius/iaps-proxy-application
 log_stream_name = {hostname}/amazon-ssm-agent_log
 
 [userdata_log]
-file = /tmp/startup.log
+file = /var/log/user-data.log
 file_fingerprint_lines = 1
 #                 2020/08/19 16:39:13
 datetime_format = %Y/%m/%d %H:%M:%S
 log_group_name = delius/iaps-proxy-application
-log_stream_name = {hostname}/startup
+log_stream_name = {hostname}/user-data.log
