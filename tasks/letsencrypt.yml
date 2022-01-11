@@ -16,16 +16,8 @@
     - 'renewal-hooks/deploy'
     - 'renewal-hooks/post'
     - 'renewal-hooks/pre'
-    - 'live/{{ url }}'
-    - 'archive/{{ url }}'
-
-- name: Create letsecrypt renewal config file
-  template:
-    src: "{{ role_path }}/templates/letsencrypt.conf.j2"
-    dest: "/etc/letsencrypt/renewal/{{ url }}.conf"
-    owner: "root"
-    mode: "0644"
-    group: "root"
+    - 'live'
+    - 'archive'
 
 - name: create our lets encrypt script directory
   file:
@@ -46,13 +38,13 @@
     mode: "0755"
     group: "root"
 
-- name: Create a cron job to auto-renew/check the SSL cert every 12 hours
-  template:
-    src: "{{ role_path }}/templates/letsencryt-renew-cron.j2"
-    dest: "/etc/cron.d/letsencrypt-renew"
-    owner: "root"
-    mode: "0644"
-    group: "root"
+#- name: Create a cron job to auto-renew/check the SSL cert every 12 hours
+#  template:
+#    src: "{{ role_path }}/templates/letsencryt-renew-cron.j2"
+#    dest: "/etc/cron.d/letsencrypt-renew"
+#    owner: "root"
+#    mode: "0644"
+#    group: "root"
 
 #- name: Generate letsencrypt certs
 #  shell: "/opt/hmpps/scripts/letsencrypt-renew.sh > /var/log/letsencryt-bootstrap.log"
