@@ -16,8 +16,6 @@
     - 'renewal-hooks/deploy'
     - 'renewal-hooks/post'
     - 'renewal-hooks/pre'
-    - 'live/{{ url }}'
-    - 'archive/{{ url }}'
 
 - name: Create letsecrypt renewal config file
   template:
