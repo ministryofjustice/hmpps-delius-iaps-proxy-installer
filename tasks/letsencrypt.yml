@@ -50,3 +50,24 @@
 #  shell: "/opt/hmpps/scripts/letsencrypt-renew.sh > /var/log/letsencryt-bootstrap.log"
 #  args:
 #    creates: /var/log/letsencryt-bootstrap.log
+
+- name: Create letsecrypt cert backup script
+  template:
+    src: "{{ role_path }}/templates/letsencryt-backup.sh.j2"
+    dest: "/opt/hmpps/scripts/letsencryt-backup.sh"
+    owner: "root"
+    mode: "0755"
+    group: "root"
+
+- name: Create letsecrypt cert restore script
+  template:
+    src: "{{ role_path }}/templates/letsencryt-restore.sh.j2"
+    dest: "/opt/hmpps/scripts/letsencryt-restore.sh"
+    owner: "root"
+    mode: "0755"
+    group: "root"
+
+#- name: Backup letsencypt certs to s3
+#  shell: "/opt/hmpps/scripts/letsencryt-backup.sh > /var/log/letsencryt-backup.log"
+#  args:
+#    creates: /var/log/letsencryt-backup.log

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+RESTORE_ZIP=$1
+backups_bucket="{{ backups_bucket }}/letsencrypt-backups"
+LETS_ENCRYPT_DIR="/etc/letsencrypt"
+BACKUP_DIR="/tmp"
+
+if [[ -z $RESTORE_ZIP ]]; then
+    echo "Usage: $0 ZIP_FILE_FROM_S3"
+    echo "Please provide backup file to restore. This can be found in S3 Bucket $backups_bucket/"
+    echo "Exiting ..."
+    exit 1
+fi
+
+cd $BACKUP_DIR
+aws s3 cp s3://${backups_bucket}/${RESTORE_ZIP} .
+unzip $RESTORE_ZIP
+rm -rf ${LETS_ENCRYPT_DIR}-deprecated
+mv $LETS_ENCRYPT_DIR ${LETS_ENCRYPT_DIR}-deprecated || echo "does not exist ...skipping"
+cp -rp letsencrypt /etc/
+rm -rf $RESTORE_ZIP letsencrypt
+nginx -t
+systemctl restart nginx && systemctl status nginx
