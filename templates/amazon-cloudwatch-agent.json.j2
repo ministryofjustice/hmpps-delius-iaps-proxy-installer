@@ -6,65 +6,65 @@
 {% if env_type == "prod" %}
           {
             "file_path": "/var/log/nginx/data-im-proxy.{{ url }}",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/data_im_proxy_log"
           },
 {% endif %}
 {% if env_type != "prod" %}
           {
             "file_path": "/var/log/nginx/data-im-proxy-int-psn.{{ url }}",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/data_im_proxy_int_log"
           },
           {
             "file_path": "/var/log/nginx/data-im-proxy-ext-psn.{{ url }}",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/data_im_proxy_ext_log"
           },
 {% endif %}
           {
             "file_path": "/var/log/nginx/access.log",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/nginx_access_log"
           },
           {
             "file_path": "/var/log/nginx/error.log",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/nginx_error_log"
           },
           {
             "file_path": "/var/log/letsencrypt/letsencrypt.log",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/letsencrypt_log"
           },
           {
             "file_path": "/var/log/cron",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/cron"
           },
           {
             "file_path": "/var/log/secure",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/secure"
           },
           {
             "file_path": "/var/log/messages",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/messages"
           },
           {
             "file_path": "/var/log/amazon/ssm/amazon-ssm-agent.log",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/amazon-ssm-agent_log"
           },
           {
             "file_path": "/var/log/user-data.log",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/user_data_log"
           },
           {
             "file_path": "/var/log/letsencrypt-backup.log",
-            "log_group_name": "{{ log_group }}",
+            "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/letsencrypt_backup_log"
           }
         ]
