@@ -13,11 +13,11 @@ if [[ -z $RESTORE_ZIP ]]; then
 fi
 
 cd $BACKUP_DIR
-aws s3 cp s3://${backups_bucket}/${RESTORE_ZIP} .
+aws s3 cp s3://${backups_bucket}/${RESTORE_ZIP} .  || exit 1
 unzip $RESTORE_ZIP
 rm -rf ${LETS_ENCRYPT_DIR}-deprecated
 mv $LETS_ENCRYPT_DIR ${LETS_ENCRYPT_DIR}-deprecated || echo "does not exist ...skipping"
 cp -rp letsencrypt /etc/
 rm -rf $RESTORE_ZIP letsencrypt
-nginx -t
+nginx -t  || exit 1
 systemctl restart nginx && systemctl status nginx
