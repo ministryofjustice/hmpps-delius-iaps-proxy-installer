@@ -1,3 +1,4 @@
 dev_northgate_url: "tbc"
 stage_northgate_url: "tbc"
 prod_northgate_url: "tbc"
+log_group: "delius/iaps-proxy-application"

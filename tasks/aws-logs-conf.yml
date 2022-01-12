@@ -2,16 +2,21 @@
 
 - name: Create aws logs config file
   template:
-    src: "{{ role_path }}/templates/aws-logs.conf.j2"
-    dest: "/etc/awslogs/awslogs.conf"
+    src: "{{ role_path }}/templates/amazon-cloudwatch-agent.json.j2"
+    dest: "/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-conf.json"
     owner: "root"
-    mode: "0644"
+    mode: "0744"
     group: "root"
 
-- name: Restart awslogsd service
+- name: Perform CW-agent config install
+  shell: "/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-conf.json > /var/log/cw-agent-install.log"
+  args:
+    creates: /var/log/cw-agent-install.log
+
+- name: Restart amazon-cloudwatch-agent service
   service:
     name: "{{ item }}"
     state: restarted
     enabled: yes
   with_items:
-    - 'awslogsd'
+    - 'amazon-cloudwatch-agent.service'
