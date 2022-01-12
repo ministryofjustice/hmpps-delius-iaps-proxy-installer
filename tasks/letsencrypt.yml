@@ -53,16 +53,16 @@
 
 - name: Create letsecrypt cert backup script
   template:
-    src: "{{ role_path }}/templates/letsencryt-backup.sh.j2"
-    dest: "/opt/hmpps/scripts/letsencryt-backup.sh"
+    src: "{{ role_path }}/templates/letsencrypt-backup.sh.j2"
+    dest: "/opt/hmpps/scripts/letsencrypt-backup.sh"
     owner: "root"
     mode: "0755"
     group: "root"
 
 - name: Create letsecrypt cert restore script
   template:
-    src: "{{ role_path }}/templates/letsencryt-restore.sh.j2"
-    dest: "/opt/hmpps/scripts/letsencryt-restore.sh"
+    src: "{{ role_path }}/templates/letsencrypt-restore.sh.j2"
+    dest: "/opt/hmpps/scripts/letsencrypt-restore.sh"
     owner: "root"
     mode: "0755"
     group: "root"
