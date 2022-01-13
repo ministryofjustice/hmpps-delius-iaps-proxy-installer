@@ -10,10 +10,10 @@ server {
 
         location / {
 {% if env_type == "stage" %}
-          proxy_pass                      https://{{ stage_northgate_url }}:8443;
+          proxy_pass                      https://{{ stage_northgate_url }};
 {% endif %}
 {% if env_type == "dev" %}
-          proxy_pass                      https://{{ dev_northgate_url }}:8443;
+          proxy_pass                      https://{{ dev_northgate_url }};
 {% endif %}
           proxy_ssl_trusted_certificate	  /etc/pki/tls/certs/ca-bundle.crt;
           proxy_ssl_verify_depth	  2;
@@ -37,10 +37,10 @@ server {
 
         location / {
 {% if env_type == "stage" %}
-                proxy_pass                      https://{{ stage_northgate_url }}:8443;
+                proxy_pass                      https://{{ stage_northgate_url }};
 {% endif %}
 {% if env_type == "dev" %}
-                proxy_pass                      https://{{ dev_northgate_url }}:8443;
+                proxy_pass                      https://{{ dev_northgate_url }};
 {% endif %}
                 proxy_ssl_trusted_certificate   /etc/pki/tls/certs/ca-bundle.crt;
                 proxy_ssl_verify_depth          2;
