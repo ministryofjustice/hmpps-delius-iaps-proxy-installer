@@ -6,7 +6,7 @@ server {
         ssl_certificate_key             /etc/letsencrypt/live/{{ url }}/privkey.pem;
 	ssl_verify_depth 		2;
         include                         ssl_params;
-	resolver			51.231.83.98 valid=30s;
+	resolver			{{ resolver }} valid=30s;
 	client_max_body_size		10M;
 
         location / {
