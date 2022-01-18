@@ -12,4 +12,4 @@ cd $BACKUP_DIR
 zip -r  ${ZIP_DIR}.zip letsencrypt
 aws s3 cp $ZIP_DIR.zip s3://${backups_bucket}    || exit 1
 rm -rf ${BACKUP_DIR}/letsencrypt ${ZIP_DIR}.zip
-echo "Backup letsencryt certs to s3://${backups_bucket}/${ZIP_DIR}.zip"
+echo "Backed up letsencryt certs to s3://${backups_bucket}/${ZIP_DIR}.zip"
