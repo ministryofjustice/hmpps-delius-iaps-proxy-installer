@@ -5,19 +5,19 @@
         "collect_list": [
 {% if env_type == "prod" %}
           {
-            "file_path": "/var/log/nginx/data-im-proxy.{{ url }}",
+            "file_path": "/var/log/nginx/data-im-proxy.{{ url }}.log",
             "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/data_im_proxy_log"
           },
 {% endif %}
 {% if env_type != "prod" %}
           {
-            "file_path": "/var/log/nginx/data-im-proxy-int-psn.{{ url }}",
+            "file_path": "/var/log/nginx/data-im-proxy-int-psn.{{ url }}.log",
             "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/data_im_proxy_int_log"
           },
           {
-            "file_path": "/var/log/nginx/data-im-proxy-ext-psn.{{ url }}",
+            "file_path": "/var/log/nginx/data-im-proxy-ext-psn.{{ url }}.log",
             "log_group_name": "{{ log_group_name }}",
             "log_stream_name": "{instance_id}/data_im_proxy_ext_log"
           },
