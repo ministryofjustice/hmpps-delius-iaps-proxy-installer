@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# This script renews LetsEncrypt Certificates for:
+#   *.{{ url }} with Route53 DNS
+#
+# Certificate Validation is via the certbot-route53 plugin which creates a TXT record to validate domain ownership with the LetsEncrypt certbot
+#
+# This script:
+#   - renews the *.{{ url }} certificate using the current Instance Profile Credentials
+
+# email to attach to cert account
+email=awssupportteam@digital.justice.gov.uk
+
+# Delius AWS Account
+iapsproxydomains="*.{{ url }}"
+certname="{{ url }}"
+
+echo "------------------------------------------------------------------------------------------"
+echo "run the certbot to renew/create ssl certificate for *.{{ url }}"
+echo "------------------------------------------------------------------------------------------"
+certbot certonly --cert-name $certname --dns-route53 --non-interactive --post-hook "service nginx reload" --agree-tos --email $email --domains $iapsproxydomains
+
+systemctl status nginx

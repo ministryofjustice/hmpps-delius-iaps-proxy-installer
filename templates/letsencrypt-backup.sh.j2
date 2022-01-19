@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+backups_bucket="{{ backups_bucket }}/letsencrypt-backups/"
+INSTANCE_ID="`curl http://169.254.169.254/latest/meta-data/instance-id`"
+DATE=$(date +"%d-%m-%y-%s")
+ZIP_DIR="letsencrypt-backup-${INSTANCE_ID}-${DATE}"
+LETS_ENCRYPT_DIR="/etc/letsencrypt"
+BACKUP_DIR="/tmp"
+
+cp -pr $LETS_ENCRYPT_DIR $BACKUP_DIR
+cd $BACKUP_DIR
+zip -r  ${ZIP_DIR}.zip letsencrypt
+aws s3 cp $ZIP_DIR.zip s3://${backups_bucket}    || exit 1
+rm -rf ${BACKUP_DIR}/letsencrypt ${ZIP_DIR}.zip
+echo "Backed up letsencryt certs to s3://${backups_bucket}/${ZIP_DIR}.zip"

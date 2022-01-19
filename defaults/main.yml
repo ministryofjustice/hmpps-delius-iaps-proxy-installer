@@ -1,0 +1,3 @@
+dev_northgate_url: "staging-im-data.i2ncloud.com"
+stage_northgate_url: "preprod-im-data.i2ncloud.com"
+prod_northgate_url: "im-data.i2ncloud.com"
