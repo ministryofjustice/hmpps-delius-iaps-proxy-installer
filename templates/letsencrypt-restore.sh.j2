@@ -20,5 +20,4 @@ mv $LETS_ENCRYPT_DIR ${LETS_ENCRYPT_DIR}-deprecated || echo "does not exist ...s
 cp -rp letsencrypt /etc/
 rm -rf $RESTORE_ZIP letsencrypt
 nginx -t  || exit 1
-systemctl daemon-reload
 systemctl restart nginx && systemctl status nginx
