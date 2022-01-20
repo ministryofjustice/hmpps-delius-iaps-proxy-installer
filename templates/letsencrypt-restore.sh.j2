@@ -21,3 +21,6 @@ cp -rp letsencrypt /etc/
 rm -rf $RESTORE_ZIP letsencrypt
 nginx -t  || exit 1
 systemctl restart nginx && systemctl status nginx
+rm -rf /etc/cron.d/letsencrypt-renew
+systemctl daemon-reload
+systemctl restart crond.service

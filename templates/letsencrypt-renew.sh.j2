@@ -18,6 +18,6 @@ certname="{{ url }}"
 echo "------------------------------------------------------------------------------------------"
 echo "run the certbot to renew/create ssl certificate for *.{{ url }}"
 echo "------------------------------------------------------------------------------------------"
-certbot certonly --cert-name $certname --dns-route53 --non-interactive --post-hook "service nginx reload" --agree-tos --email $email --domains $iapsproxydomains
+certbot certonly --cert-name $certname --dns-route53 --non-interactive --post-hook "service nginx reload" --agree-tos --email $email --domains $iapsproxydomains || exit 1
 
 systemctl status nginx
