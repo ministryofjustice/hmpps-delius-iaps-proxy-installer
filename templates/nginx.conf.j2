@@ -7,6 +7,10 @@ server {
 	      ssl_verify_depth 	      2;
         include                 ssl_params;
 	      resolver		            {{ resolver }} valid=30s;
+        allow                   {{ az1_cidr_block }};
+        allow                   {{ az2_cidr_block }};
+        allow                   {{ az3_cidr_block }};
+        deny                    all;
 
         location / {
 {% if env_type == "prod" %}
@@ -25,5 +29,9 @@ server {
           proxy_ssl_protocols		          TLSv1.3;
           proxy_http_version		          1.1;
           client_max_body_size            10m;
+          allow                           {{ az1_cidr_block }};
+          allow                           {{ az2_cidr_block }};
+          allow                           {{ az3_cidr_block }};
+          deny                            all;
         }
 }
