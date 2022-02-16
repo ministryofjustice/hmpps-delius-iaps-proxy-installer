@@ -54,20 +54,20 @@
     mode: "0755"
     group: "root"
 
-#- name: Generate letsencrypt certs
-#  shell: "/opt/hmpps/scripts/letsencrypt-renew.sh > /var/log/letsencrypt-bootstrap.log"
-#  args:
-#    creates: /var/log/letsencrypt-bootstrap.log
+- name: Generate letsencrypt certs
+  shell: "/opt/hmpps/scripts/letsencrypt-renew.sh > /var/log/letsencrypt-bootstrap.log"
+  args:
+    creates: /var/log/letsencrypt-bootstrap.log
 
-#- name: Backup letsencypt certs to s3
-#  shell: "/opt/hmpps/scripts/letsencrypt-backup.sh > /var/log/letsencrypt-backup.log"
-#  args:
-#    creates: /var/log/letsencrypt-backup.log
+- name: Backup letsencypt certs to s3
+  shell: "/opt/hmpps/scripts/letsencrypt-backup.sh > /var/log/letsencrypt-backup.log"
+  args:
+    creates: /var/log/letsencrypt-backup.log
 
-#- name: Create a cron job to auto-renew/check the SSL cert every 12 hours
-#  template:
-#    src: "{{ role_path }}/templates/letsencrypt-renew-cron.j2"
-#    dest: "/etc/cron.d/letsencrypt-renew"
-#    owner: "root"
-#    mode: "0644"
-#    group: "root"
+- name: Create a cron job to auto-renew/check the SSL cert every 12 hours
+  template:
+    src: "{{ role_path }}/templates/letsencrypt-renew-cron.j2"
+    dest: "/etc/cron.d/letsencrypt-renew"
+    owner: "root"
+    mode: "0644"
+    group: "root"
